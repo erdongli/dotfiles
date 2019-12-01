@@ -13,3 +13,6 @@
 [submodule ".vim/pack/erdongli/start/syntastic"]
 	path = .vim/pack/erdongli/start/syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
+[submodule "/Users/erdongli/.vim/pack/erdongli/start/vim-go"]
+	path = /Users/erdongli/.vim/pack/erdongli/start/vim-go
+	url = git@github.com:fatih/vim-go.git
