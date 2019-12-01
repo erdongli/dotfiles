@@ -16,3 +16,6 @@
 [submodule ".vim/pack/erdongli/start/vim-go"]
 	path = .vim/pack/erdongli/start/vim-go
 	url = git@github.com:fatih/vim-go.git
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = git@github.com:ohmyzsh/ohmyzsh.git
