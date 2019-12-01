@@ -1,18 +1,18 @@
-[submodule "/Users/erdongli/.vim/pack/erdongli/start/nerdtree"]
-	path = /Users/erdongli/.vim/pack/erdongli/start/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
+[submodule ".vim/pack/erdongli/start/nerdtree"]
+	path = .vim/pack/erdongli/start/nerdtree
+	url = git@github.com:scrooloose/nerdtree.git
 [submodule ".vim/pack/erdongli/start/gruvbox"]
 	path = .vim/pack/erdongli/start/gruvbox
-	url = https://github.com/morhetz/gruvbox.git
+	url = git@github.com:morhetz/gruvbox.git
 [submodule ".vim/pack/erdongli/start/vim-airline"]
 	path = .vim/pack/erdongli/start/vim-airline
-	url = https://github.com/vim-airline/vim-airline
+	url = git@github.com:vim-airline/vim-airline
 [submodule ".vim/pack/erdongli/start/vim-airline-themes"]
 	path = .vim/pack/erdongli/start/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes
+	url = git@github.com:vim-airline/vim-airline-themes
 [submodule ".vim/pack/erdongli/start/syntastic"]
 	path = .vim/pack/erdongli/start/syntastic
-	url = https://github.com/vim-syntastic/syntastic.git
-[submodule "/Users/erdongli/.vim/pack/erdongli/start/vim-go"]
-	path = /Users/erdongli/.vim/pack/erdongli/start/vim-go
+	url = git@github.com:vim-syntastic/syntastic.git
+[submodule ".vim/pack/erdongli/start/vim-go"]
+	path = .vim/pack/erdongli/start/vim-go
 	url = git@github.com:fatih/vim-go.git
