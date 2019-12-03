@@ -30,14 +30,12 @@ augroup end
 " plugins
 
 " nerdtree
-autocmd VimEnter * NERDTree | wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
 " tagbar
-autocmd VimEnter * nested :TagbarOpen | wincmd p
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
