@@ -1,17 +1,17 @@
 [submodule ".vim/pack/erdongli/start/nerdtree"]
-	path = .vim/pack/erdongli/start/nerdtree
+	path = .vim/pack/plugins/start/nerdtree
 	url = git@github.com:scrooloose/nerdtree.git
 [submodule ".vim/pack/erdongli/start/gruvbox"]
-	path = .vim/pack/erdongli/start/gruvbox
+	path = .vim/pack/plugins/start/gruvbox
 	url = git@github.com:morhetz/gruvbox.git
 [submodule ".vim/pack/erdongli/start/vim-airline"]
-	path = .vim/pack/erdongli/start/vim-airline
+	path = .vim/pack/plugins/start/vim-airline
 	url = git@github.com:vim-airline/vim-airline
 [submodule ".vim/pack/erdongli/start/vim-airline-themes"]
-	path = .vim/pack/erdongli/start/vim-airline-themes
+	path = .vim/pack/plugins/start/vim-airline-themes
 	url = git@github.com:vim-airline/vim-airline-themes
 [submodule ".vim/pack/erdongli/start/vim-go"]
-	path = .vim/pack/erdongli/start/vim-go
+	path = .vim/pack/plugins/start/vim-go
 	url = git@github.com:fatih/vim-go.git
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
@@ -23,13 +23,13 @@
 	path = .tmux/plugins/tmux-sensible
 	url = git@github.com:tmux-plugins/tmux-sensible.git
 [submodule ".vim/pack/erdongli/start/vim-tmux"]
-	path = .vim/pack/erdongli/start/vim-tmux
+	path = .vim/pack/plugins/start/vim-tmux
 	url = git@github.com:tmux-plugins/vim-tmux.git
 [submodule ".tmux/plugins/tmux-prefix-highlight"]
 	path = .tmux/plugins/tmux-prefix-highlight
 	url = git@github.com:tmux-plugins/tmux-prefix-highlight.git
 [submodule ".vim/pack/erdongli/start/tagbar"]
-	path = .vim/pack/erdongli/start/tagbar
+	path = .vim/pack/plugins/start/tagbar
 	url = git@github.com:majutsushi/tagbar.git
 [submodule ".vim/pack/erdongli/start/tabular"]
 	path = .vim/pack/erdongli/start/tabular
