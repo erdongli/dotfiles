@@ -1,17 +1,23 @@
-" disable compatible mode
 set nocompatible
-
-" syntax highlight
 syntax on
+set nowrap
+set encoding=utf8
 
-" show line numbers
 set number
+set ruler
 
-" color scheme
+set list lcs=trail:·,tab:»·
+set tabstop=2
+set shiftwidth=2
+set smarttab
+set expandtab
+
+set cursorline
+
 colorscheme gruvbox
+set t_Co=256
 set background=dark
 
-" plugins
 
 " NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
