@@ -18,3 +18,8 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# setup golang
+export GOROOT="$(brew --prefix golang)/libexec"
+export GOPATH="${HOME}/.go"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
