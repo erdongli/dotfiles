@@ -64,7 +64,7 @@ let g:tagbar_type_go = {
 \ }
 
 " vim-go
-let g:go_fmt_autosave = 1             " disable autoformat
+let g:go_fmt_autosave = 1
 let g:go_fmt_command = "goimports"
 let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
