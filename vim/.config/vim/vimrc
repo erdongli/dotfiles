@@ -1,0 +1,67 @@
+" xdg
+set runtimepath+=$XDG_DATA_HOME/vim
+set packpath+=$XDG_DATA_HOME/vim,$XDG_DATA_HOME/vim/after
+set backupdir=$XDG_STATE_HOME/vim/backup
+set directory=$XDG_STATE_HOME/vim/swap
+set viewdir=$XDG_STATE_HOME/vim/view
+set undodir=$XDG_STATE_HOME/vim/undo
+set viminfofile=$XDG_STATE_HOME/vim/viminfo
+
+set nocompatible                      " disable compatible mode
+
+set tabstop=2                         " tab width
+set shiftwidth=2                      " indent width
+set list                              " visiblize tabs
+set listchars=tab:.\ ,trail:.         " tab => spaces set list
+set expandtab                         " tab => spaces
+
+set number                            " show line number
+set ruler                             " show cursor status
+set cursorline                        " highlight current line
+set showcmd                           " show commands
+set showmatch                         " match parentheses
+
+set clipboard^=unnamed,unnamedplus    " allow copy-paste everywhere
+
+set backspace=indent,eol,start
+
+set background=dark
+autocmd vimenter * ++nested colorscheme gruvbox
+
+syntax on
+filetype plugin indent on
+
+" nerdtree
+autocmd VimEnter * NERDTree | wincmd p
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
+
+let NERDTreeMinimalUI = 1
+
+" vim-gitgutter
+set updatetime=100
+
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+set statusline+=%{GitStatus()}
+
+" vim-airline
+let g:airline_powerline_fonts = 1
+
+" vim-go
+"let g:go_fmt_autosave = 1
+"let g:go_fmt_command = "goimports"
+"let g:go_autodetect_gopath = 1
+"let g:go_list_type = "quickfix"
+"
+"let g:go_highlight_types = 1
+"let g:go_highlight_fields = 1
+"let g:go_highlight_functions = 1
+"let g:go_highlight_methods = 1
+"let g:go_highlight_extra_types = 1
+"let g:go_highlight_generate_tags = 1
+"
+"let g:go_template_autocreate = 0
+"
+"let g:go_list_height = 30
