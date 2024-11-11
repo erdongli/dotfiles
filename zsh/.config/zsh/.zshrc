@@ -47,4 +47,8 @@ source "$XDG_DATA_HOME/powerlevel10k/powerlevel10k.zsh-theme"
 . "$HOME/.cargo/env"
 
 # python3
+export PYTHON_HISTORY="$XDG_STATE_HOME/python3/history"
 source "$XDG_STATE_HOME/python3/venv/bin/activate"
+
+# less
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
