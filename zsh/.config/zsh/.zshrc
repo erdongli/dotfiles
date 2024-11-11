@@ -41,7 +41,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # p10k
 source "$XDG_DATA_HOME/powerlevel10k/powerlevel10k.zsh-theme"
-[[ ! -f "$XDG_CONFIG_HOME/powerlevel10k/p10k.zsh" ]] || source "$XDG_CONFIG_HOME/powerlevel10k/p10k.zsh"
+[[ ! -f "$XDG_CONFIG_HOME/zsh/p10k.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/p10k.zsh"
+
+# zsh-autosuggestions
+source "$XDG_DATA_HOME/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
 
 # rust
 . "$HOME/.cargo/env"

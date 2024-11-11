@@ -1,6 +1,3 @@
-[submodule "powerlevel10k/.local/share/powerlevel10k"]
-	path = powerlevel10k/.local/share/powerlevel10k
-	url = git@github.com:romkatv/powerlevel10k.git
 [submodule "vim/.local/share/vim/pack/default/start/gruvbox"]
 	path = vim/.local/share/vim/pack/default/start/gruvbox
 	url = git@github.com:morhetz/gruvbox.git
@@ -28,3 +25,9 @@
 [submodule "vim/.local/share/vim/pack/default/start/asyncomplete-lsp.vim"]
 	path = vim/.local/share/vim/pack/default/start/asyncomplete-lsp.vim
 	url = git@github.com:prabirshrestha/asyncomplete-lsp.vim.git
+[submodule "zsh/.local/share/powerlevel10k"]
+	path = zsh/.local/share/powerlevel10k
+	url = git@github.com:romkatv/powerlevel10k.git
+[submodule "zsh/.local/share/zsh-autosuggestions"]
+	path = zsh/.local/share/zsh-autosuggestions
+	url = git@github.com:zsh-users/zsh-autosuggestions.git
