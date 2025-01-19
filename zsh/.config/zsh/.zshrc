@@ -56,3 +56,7 @@ source "$XDG_STATE_HOME/python3/venv/bin/activate"
 
 # less
 export LESSHISTFILE="$XDG_STATE_HOME/less/history"
+
+# google cloud sdk
+if [ -f '/Users/erdong/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/erdong/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/erdong/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/erdong/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
