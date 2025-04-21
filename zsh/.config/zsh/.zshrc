@@ -62,6 +62,5 @@ if [ -f '/Users/erdong/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/User
 if [ -f '/Users/erdong/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/erdong/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

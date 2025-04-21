@@ -31,3 +31,6 @@
 [submodule "zsh/.local/share/zsh-autosuggestions"]
 	path = zsh/.local/share/zsh-autosuggestions
 	url = git@github.com:zsh-users/zsh-autosuggestions.git
+[submodule "nvm/.config/nvm/nvm"]
+	path = nvm/.config/nvm/nvm
+	url = git@github.com:nvm-sh/nvm.git
