@@ -84,10 +84,10 @@ if executable('gopls')
       \ })
 endif
 
-if executable('pyright-langserver')
+if executable('uv')
   au User lsp_setup call lsp#register_server({
       \ 'name': 'pyright',
-      \ 'cmd': {server_info->['pyright-langserver', '--stdio']},
+      \ 'cmd': {server_info->['uv', 'run', 'pyright-langserver', '--stdio']},
       \ 'allowlist': ['python'],
       \ })
 endif
