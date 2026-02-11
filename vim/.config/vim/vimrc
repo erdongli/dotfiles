@@ -1,4 +1,6 @@
+" -----------------------------
 " xdg
+" -----------------------------
 set runtimepath+=$XDG_DATA_HOME/vim
 set packpath+=$XDG_DATA_HOME/vim,$XDG_DATA_HOME/vim/after
 set backupdir=$XDG_STATE_HOME/vim/backup
@@ -6,6 +8,10 @@ set directory=$XDG_STATE_HOME/vim/swap
 set viewdir=$XDG_STATE_HOME/vim/view
 set undodir=$XDG_STATE_HOME/vim/undo
 set viminfofile=$XDG_STATE_HOME/vim/viminfo
+
+" -----------------------------
+" vim
+" -----------------------------
 
 set nocompatible                      " disable compatible mode
 
@@ -31,13 +37,17 @@ autocmd vimenter * ++nested colorscheme gruvbox
 syntax on
 filetype plugin indent on
 
+" -----------------------------
 " nerdtree
+" -----------------------------
 autocmd VimEnter * NERDTree | wincmd p
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
 
 let NERDTreeMinimalUI = 1
 
+" -----------------------------
 " vim-gitgutter
+" -----------------------------
 set updatetime=100
 
 function! GitStatus()
@@ -46,10 +56,14 @@ function! GitStatus()
 endfunction
 set statusline+=%{GitStatus()}
 
+" -----------------------------
 " vim-airline
+" -----------------------------
 let g:airline_powerline_fonts = 1
 
+" -----------------------------
 " vim-lsp
+" -----------------------------
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
@@ -100,25 +114,47 @@ if executable('rust-analyzer')
       \ })
 endif
 
+" -----------------------------
 " asyncomplete
-" tab completion
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" -----------------------------
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
 
-" force refresh completion
-imap <c-space> <Plug>(asyncomplete_force_refresh)
+" auto popup suggestions
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_popup_delay = 120
 
-" no auto popup
-let g:asyncomplete_auto_popup = 0
+" if using asyncomplete-lsp, auto-enable it
+let g:asyncomplete_lsp_auto_enable = 1
 
 function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
+  let col = col('.') - 1
+  return col <= 0 || getline('.')[col - 1] =~# '\s'
 endfunction
 
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ asyncomplete#force_refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" smart tab:
+" - if popup visible: next item
+" - if at whitespace: insert Tab (indent)
+" - else: trigger completion
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ asyncomplete#force_refresh()
+
+" shift-tab:
+" - if popup visible: previous item
+" - else: do a backspace
+inoremap <silent><expr> <S-Tab>
+      \ pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" enter:
+" - if popup visible: accept selected completion
+" - else: newline
+inoremap <silent><expr> <CR>
+      \ pumvisible() ? "\<C-y>" : "\<CR>"
+
+" cancel popup
+inoremap <silent><expr> <C-e> pumvisible() ? "\<C-e>" : "\<C-e>"
+
+" force refresh completion
+inoremap <silent><C-l> <Plug>(asyncomplete_force_refresh)
