@@ -46,21 +46,20 @@ source "$XDG_DATA_HOME/powerlevel10k/powerlevel10k.zsh-theme"
 # zsh-autosuggestions
 source "$XDG_DATA_HOME/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-
 # rust
 . "$HOME/.cargo/env"
 
 # python3
 export PYTHON_HISTORY="$XDG_STATE_HOME/python3/history"
-source "$XDG_STATE_HOME/python3/venv/bin/activate"
 
 # less
 export LESSHISTFILE="$XDG_STATE_HOME/less/history"
 
 # google cloud sdk
-if [ -f '/Users/erdong/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/erdong/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-if [ -f '/Users/erdong/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/erdong/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 
-# nvm
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
+
+# uv
+export PATH="$HOME/.local/share/../bin:$PATH"
