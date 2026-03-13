@@ -3,6 +3,11 @@ if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# xdg
+export XDG_CONFIG_HOME XDG_CACHE_HOME
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_DATA_HOME="$HOME/.local/share"
+
 # history file
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 
