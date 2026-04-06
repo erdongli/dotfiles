@@ -1,6 +1,19 @@
 " -----------------------------
 " xdg
 " -----------------------------
+if empty($XDG_DATA_HOME)
+  let $XDG_DATA_HOME = expand('~/.local/share')
+endif
+
+if empty($XDG_STATE_HOME)
+  let $XDG_STATE_HOME = expand('~/.local/state')
+endif
+
+call mkdir($XDG_STATE_HOME . '/vim/backup', 'p')
+call mkdir($XDG_STATE_HOME . '/vim/swap', 'p')
+call mkdir($XDG_STATE_HOME . '/vim/view', 'p')
+call mkdir($XDG_STATE_HOME . '/vim/undo', 'p')
+
 set runtimepath+=$XDG_DATA_HOME/vim
 set packpath+=$XDG_DATA_HOME/vim,$XDG_DATA_HOME/vim/after
 set backupdir=$XDG_STATE_HOME/vim/backup
