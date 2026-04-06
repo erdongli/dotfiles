@@ -9,6 +9,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DATA_HOME="$HOME/.local/share"
 
 # history file
+mkdir -p "$XDG_STATE_HOME/zsh"
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 
 export SAVEHIST=10000
@@ -52,9 +53,11 @@ fi
 [[ -r "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 # python3
+mkdir -p "$XDG_STATE_HOME/python3"
 export PYTHON_HISTORY="$XDG_STATE_HOME/python3/history"
 
 # less
+mkdir -p "$XDG_STATE_HOME/less"
 export LESSHISTFILE="$XDG_STATE_HOME/less/history"
 
 # google cloud sdk
