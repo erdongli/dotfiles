@@ -37,17 +37,19 @@ zstyle ':completion:*' menu select=2
 zstyle ':completion:*' select-prompt %Sat %p%s
 
 # homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # p10k
-source "$XDG_DATA_HOME/powerlevel10k/powerlevel10k.zsh-theme"
-[[ ! -f "$XDG_CONFIG_HOME/zsh/p10k.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/p10k.zsh"
+[[ -r "$XDG_DATA_HOME/powerlevel10k/powerlevel10k.zsh-theme" ]] && source "$XDG_DATA_HOME/powerlevel10k/powerlevel10k.zsh-theme"
+[[ -r "$XDG_CONFIG_HOME/zsh/p10k.zsh" ]] && source "$XDG_CONFIG_HOME/zsh/p10k.zsh"
 
 # zsh-autosuggestions
-source "$XDG_DATA_HOME/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[[ -r "$XDG_DATA_HOME/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && source "$XDG_DATA_HOME/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # rust
-. "$HOME/.cargo/env"
+[[ -r "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 # python3
 export PYTHON_HISTORY="$XDG_STATE_HOME/python3/history"
@@ -56,10 +58,16 @@ export PYTHON_HISTORY="$XDG_STATE_HOME/python3/history"
 export LESSHISTFILE="$XDG_STATE_HOME/less/history"
 
 # google cloud sdk
-source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+if command -v brew >/dev/null 2>&1; then
+  gcloud_completion="$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+  [[ -r "$gcloud_completion" ]] && source "$gcloud_completion"
+  unset gcloud_completion
+fi
 
 # fnm
-eval "$(fnm env --use-on-cd --shell zsh)"
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --use-on-cd --shell zsh)"
+fi
 
 # uv
 export PATH="$HOME/.local/share/../bin:$PATH"
