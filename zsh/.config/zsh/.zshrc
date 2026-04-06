@@ -18,6 +18,7 @@ setopt append_history         # Append history instead of overwriting
 setopt share_history          # Share history across sessions
 
 # completion
+mkdir -p "$XDG_CACHE_HOME/zsh"
 autoload -U compinit
 
 _COMP_FILES=($XDG_CACHE_HOME/zsh/zcompcache(Nm-20))
