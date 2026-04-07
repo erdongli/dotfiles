@@ -5,6 +5,14 @@ vim.opt.relativenumber = true
 -- enable mouse mode
 vim.opt.mouse = "a"
 
+-- indentation
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+
+-- enable true color
+vim.opt.termguicolors = true
+
 -- hide mode
 vim.opt.showmode = false
 
@@ -14,7 +22,7 @@ vim.opt.clipboard = "unnamedplus"
 -- enable break indent
 vim.opt.breakindent = true
 
--- enable undo/redo after reopen a file
+-- persistent undo
 vim.opt.undofile = true
 
 -- case insensitive search
