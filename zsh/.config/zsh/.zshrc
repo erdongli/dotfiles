@@ -17,26 +17,19 @@ setopt hist_ignore_space      # Ignore commands that start with a space
 setopt append_history         # Append history instead of overwriting
 setopt share_history          # Share history across sessions
 
-# completion
-mkdir -p "$XDG_CACHE_HOME/zsh"
-autoload -U compinit
-
-_COMP_FILES=($XDG_CACHE_HOME/zsh/zcompcache(Nm-20))
-if (( $#_COMP_FILES )); then
-    compinit -i -C -d "$XDG_CACHE_HOME/zsh/zcompcache"
-else
-    compinit -i -d "$XDG_CACHE_HOME/zsh/zcompcache"
-fi
-unset _COMP_FILES
-
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' menu select=2
-zstyle ':completion:*' select-prompt %Sat %p%s
-
 # homebrew
 if [[ -x /opt/homebrew/bin/brew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+# completion
+mkdir -p "$XDG_CACHE_HOME/zsh"
+autoload -U compinit
+compinit -i -d "$XDG_CACHE_HOME/zsh/zcompcache"
+
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*' select-prompt %Sat %p%s
 
 # p10k
 [[ -r "$XDG_DATA_HOME/powerlevel10k/powerlevel10k.zsh-theme" ]] && source "$XDG_DATA_HOME/powerlevel10k/powerlevel10k.zsh-theme"
