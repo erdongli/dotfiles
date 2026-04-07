@@ -63,6 +63,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 5
 
 -- show the current buffer path in the window bar
+---@diagnostic disable-next-line: duplicate-set-field
 function _G.dotfiles_winbar()
 	local bufnr = vim.api.nvim_get_current_buf()
 

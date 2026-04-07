@@ -236,6 +236,7 @@ return {
 			statusline.setup({
 				use_icons = vim.g.have_nerd_font,
 			})
+			---@diagnostic disable-next-line: duplicate-set-field
 			statusline.section_location = function()
 				return "%2l:%-2v"
 			end
@@ -282,8 +283,6 @@ return {
 		dependencies = {
 			{
 				"mason-org/mason.nvim",
-				---@module "mason.settings"
-				---@type MasonSettings
 				---@diagnostic disable-next-line: missing-fields
 				opts = {},
 			},
@@ -517,8 +516,6 @@ return {
 				opts = {},
 			},
 		},
-		---@module "blink.cmp"
-		---@type blink.cmp.Config
 		opts = {
 			keymap = { preset = "default" },
 			appearance = { nerd_font_variant = "mono" },
@@ -546,8 +543,6 @@ return {
 				desc = "[F]ormat buffer",
 			},
 		},
-		---@module "conform"
-		---@type conform.setupOpts
 		opts = {
 			notify_on_error = false,
 			format_on_save = function(bufnr)
