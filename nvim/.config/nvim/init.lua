@@ -65,8 +65,13 @@ vim.opt.scrolloff = 5
 -- show the current buffer path in the window bar
 function _G.dotfiles_winbar()
 	local bufnr = vim.api.nvim_get_current_buf()
-	local name = vim.api.nvim_buf_get_name(bufnr)
 
+	local buftype = vim.bo[bufnr].buftype
+	if buftype ~= "" then
+		return ""
+	end
+
+	local name = vim.api.nvim_buf_get_name(bufnr)
 	if name == "" then
 		return "[No Name]"
 	end

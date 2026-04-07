@@ -477,9 +477,9 @@ return {
 
 			local ensure_installed = {
 				"gopls",
-				"lua_ls",
+				"lua-language-server",
 				"ruff",
-				"rust_analyzer",
+				"rust-analyzer",
 				"stylua",
 				"ty",
 			}
@@ -542,7 +542,7 @@ return {
 					local lsp_format = vim.bo.filetype == "python" and "never" or "fallback"
 					require("conform").format({ async = true, lsp_format = lsp_format })
 				end,
-				mode = "",
+				mode = "n",
 				desc = "[F]ormat buffer",
 			},
 		},
@@ -575,27 +575,29 @@ return {
 		-- highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,
-		build = ":TSUpdate",
+		parsers = {
+			"bash",
+			"c",
+			"diff",
+			"go",
+			"html",
+			"lua",
+			"luadoc",
+			"markdown",
+			"markdown_inline",
+			"python",
+			"query",
+			"rust",
+			"vim",
+			"vimdoc",
+		},
+		build = function(plugin)
+			require("nvim-treesitter").install(plugin.parsers, { summary = true })
+		end,
 		branch = "main",
-		config = function()
-			-- install the parsers this config actually relies on
-			local parsers = {
-				"bash",
-				"c",
-				"diff",
-				"go",
-				"html",
-				"lua",
-				"luadoc",
-				"markdown",
-				"markdown_inline",
-				"python",
-				"query",
-				"rust",
-				"vim",
-				"vimdoc",
-			}
-			require("nvim-treesitter").install(parsers)
+		config = function(plugin)
+			-- Keep configured parsers installed on normal startup too.
+			require("nvim-treesitter").install(plugin.parsers, { summary = true })
 
 			vim.api.nvim_create_autocmd("FileType", {
 				group = vim.api.nvim_create_augroup("treesitter-filetype", { clear = true }),
