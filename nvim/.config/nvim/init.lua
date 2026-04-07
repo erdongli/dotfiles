@@ -59,6 +59,38 @@ vim.opt.inccommand = "split"
 -- enable cursor line
 vim.opt.cursorline = true
 
+-- keep a few lines of context around the cursor
+vim.opt.scrolloff = 5
+
+-- show the current buffer path in the window bar
+function _G.dotfiles_winbar()
+	local bufnr = vim.api.nvim_get_current_buf()
+	local name = vim.api.nvim_buf_get_name(bufnr)
+
+	if name == "" then
+		return "[No Name]"
+	end
+
+	local path = vim.fn.fnamemodify(name, ":~:.")
+	local flags = {}
+
+	if vim.bo[bufnr].modified then
+		table.insert(flags, "+")
+	end
+
+	if vim.bo[bufnr].readonly or not vim.bo[bufnr].modifiable then
+		table.insert(flags, "RO")
+	end
+
+	if #flags == 0 then
+		return " " .. path .. " "
+	end
+
+	return " " .. path .. " [" .. table.concat(flags, " ") .. "] "
+end
+
+vim.opt.winbar = "%{%v:lua.dotfiles_winbar()%}"
+
 -- [[ keymaps ]]
 -- clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")

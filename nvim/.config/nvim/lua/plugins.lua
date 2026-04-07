@@ -58,7 +58,9 @@ return {
 			spec = {
 				{ "<leader>s", group = "[S]earch", mode = "n" },
 				{ "<leader>t", group = "[T]oggle", mode = "n" },
+				{ "<leader>c", group = "[C]ode", mode = { "n", "x" } },
 				{ "<leader>h", group = "Git [H]unk", mode = "n" },
+				{ "<leader>x", group = "Trouble", mode = "n" },
 				{ "gr", group = "LSP Actions", mode = "n" },
 			},
 		},
@@ -144,6 +146,86 @@ return {
 	},
 
 	{
+		-- file explorer
+		"nvim-tree/nvim-tree.lua",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		keys = {
+			{ "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle file [E]xplorer" },
+			{ "<leader>o", "<cmd>NvimTreeFindFile<cr>", desc = "Reveal file in explorer" },
+		},
+		opts = {
+			hijack_cursor = true,
+			sync_root_with_cwd = true,
+			update_focused_file = {
+				enable = true,
+				update_root = false,
+			},
+			view = {
+				width = 36,
+			},
+			renderer = {
+				root_folder_label = false,
+				group_empty = true,
+				indent_markers = {
+					enable = true,
+				},
+			},
+			filters = {
+				dotfiles = false,
+			},
+			git = {
+				enable = true,
+			},
+			diagnostics = {
+				enable = true,
+				show_on_dirs = true,
+			},
+		},
+	},
+
+	{
+		-- diagnostics and references panel
+		"folke/trouble.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		cmd = "Trouble",
+		keys = {
+			{
+				"<leader>xx",
+				function()
+					require("trouble").toggle("diagnostics")
+				end,
+				desc = "Toggle diagnostics",
+			},
+			{
+				"<leader>xq",
+				function()
+					require("trouble").toggle("quickfix")
+				end,
+				desc = "Toggle quickfix",
+			},
+			{
+				"<leader>xl",
+				function()
+					require("trouble").toggle("loclist")
+				end,
+				desc = "Toggle location list",
+			},
+			{
+				"grr",
+				function()
+					require("trouble").toggle("lsp_references")
+				end,
+				desc = "LSP references",
+			},
+		},
+		opts = {},
+	},
+
+	{
 		-- mini plugins/modules
 		"nvim-mini/mini.nvim",
 		version = "*",
@@ -158,6 +240,24 @@ return {
 				return "%2l:%-2v"
 			end
 		end,
+	},
+
+	{
+		-- open buffer tabs
+		"akinsho/bufferline.nvim",
+		version = "*",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		event = "VeryLazy",
+		opts = {
+			options = {
+				diagnostics = "nvim_lsp",
+				always_show_bufferline = false,
+				show_buffer_close_icons = false,
+				show_close_icon = false,
+			},
+		},
 	},
 
 	{
@@ -209,7 +309,9 @@ return {
 						})
 					end
 
-					map("grr", telescope("lsp_references"), "[G]oto [R]eferences")
+					map("grr", function()
+						require("trouble").toggle("lsp_references")
+					end, "[G]oto [R]eferences")
 					map("gri", telescope("lsp_implementations"), "[G]oto [I]mplementation")
 					map("grd", telescope("lsp_definitions"), "[G]oto [D]efinition")
 					map("grt", telescope("lsp_type_definitions"), "[G]oto [T]ype Definition")
@@ -219,6 +321,17 @@ return {
 					map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
 					map("gra", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
 					map("grD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+					map("gd", telescope("lsp_definitions"), "[G]oto [D]efinition")
+					map("gI", telescope("lsp_implementations"), "[G]oto [I]mplementation")
+					map("K", vim.lsp.buf.hover, "Hover Documentation")
+					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
+					map("[d", function()
+						vim.diagnostic.jump({ count = -1, float = true })
+					end, "Previous Diagnostic")
+					map("]d", function()
+						vim.diagnostic.jump({ count = 1, float = true })
+					end, "Next Diagnostic")
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 
@@ -409,8 +522,8 @@ return {
 		opts = {
 			keymap = { preset = "default" },
 			appearance = { nerd_font_variant = "mono" },
-			completion = { documentation = { auto_show = false, auto_show_delay_ms = 500 } },
-			sources = { default = { "lsp", "path", "snippets" } },
+			completion = { documentation = { auto_show = true, auto_show_delay_ms = 200 } },
+			sources = { default = { "lsp", "path", "snippets", "buffer" } },
 			snippets = { preset = "luasnip" },
 			fuzzy = { implementation = "lua" },
 			signature = { enabled = true },
