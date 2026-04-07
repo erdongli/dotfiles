@@ -146,6 +146,23 @@ return {
   },
 
   {
+    -- mini plugins/modules
+    "nvim-mini/mini.nvim",
+    version = "*",
+    config = function()
+      require("mini.surround").setup()
+
+      local statusline = require("mini.statusline")
+      statusline.setup({
+        use_icons = vim.g.have_nerd_font,
+      })
+      statusline.section_location = function()
+        return "%2l:%-2v"
+      end
+    end,
+  },
+
+  {
     -- gruvbox
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
