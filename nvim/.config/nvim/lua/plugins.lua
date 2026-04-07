@@ -240,6 +240,14 @@ return {
 			statusline.section_location = function()
 				return "%2l:%-2v"
 			end
+
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("hide-statusline-for-nvimtree", { clear = true }),
+				pattern = { "NvimTree", "NvimTreePopup", "NvimTreeFilter" },
+				callback = function(args)
+					vim.b[args.buf].ministatusline_disable = true
+				end,
+			})
 		end,
 	},
 
@@ -482,11 +490,20 @@ return {
 				"stylua",
 				"ty",
 			}
-
 			require("mason-tool-installer").setup({
 				ensure_installed = ensure_installed,
 				run_on_start = true,
 				debounce_hours = 24,
+			})
+
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("detach-lsp-from-nvimtree", { clear = true }),
+				pattern = { "NvimTree", "NvimTreePopup", "NvimTreeFilter" },
+				callback = function(args)
+					for _, client in ipairs(vim.lsp.get_clients({ bufnr = args.buf })) do
+						vim.lsp.buf_detach_client(args.buf, client.id)
+					end
+				end,
 			})
 
 			for name, config in pairs(servers) do
