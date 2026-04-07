@@ -40,6 +40,15 @@ export PYTHON_HISTORY="$XDG_STATE_HOME/python3/history"
 mkdir -p "$XDG_STATE_HOME/less"
 export LESSHISTFILE="$XDG_STATE_HOME/less/history"
 
+# completion
+mkdir -p "$XDG_CACHE_HOME/zsh"
+autoload -U compinit
+compinit -i -d "$ZSH_COMPDUMP"
+
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*' select-prompt %Sat %p%s
+
 # google cloud sdk
 if [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
   gcloud_completion="$HOMEBREW_PREFIX/share/google-cloud-sdk/completion.zsh.inc"
@@ -54,12 +63,3 @@ fi
 
 # uv
 export PATH="$HOME/.local/bin:$PATH"
-
-# completion
-mkdir -p "$XDG_CACHE_HOME/zsh"
-autoload -U compinit
-compinit -i -d "$ZSH_COMPDUMP"
-
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' menu select=2
-zstyle ':completion:*' select-prompt %Sat %p%s
