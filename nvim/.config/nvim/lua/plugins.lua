@@ -431,6 +431,9 @@ return {
 
 				ruff = {},
 
+				terraformls = {},
+				tflint = {},
+
 				ty = {
 					cmd = { "ty", "server" },
 				},
@@ -488,6 +491,8 @@ return {
 				"ruff",
 				"rust-analyzer",
 				"stylua",
+				"terraform-ls",
+				"tflint",
 				"ty",
 			}
 			require("mason-tool-installer").setup({
@@ -579,6 +584,8 @@ return {
 				python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
 				rust = { "rustfmt" },
 				lua = { "stylua" },
+				terraform = { "terraform_fmt" },
+				["terraform-vars"] = { "terraform_fmt" },
 			},
 		},
 	},
@@ -592,6 +599,7 @@ return {
 			"c",
 			"diff",
 			"go",
+			"hcl",
 			"html",
 			"lua",
 			"luadoc",
@@ -600,6 +608,7 @@ return {
 			"python",
 			"query",
 			"rust",
+			"terraform",
 			"vim",
 			"vimdoc",
 		},
