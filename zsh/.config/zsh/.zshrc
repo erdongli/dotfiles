@@ -1,8 +1,3 @@
-# p10k instant prompt
-if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # history file
 mkdir -p "$XDG_STATE_HOME/zsh"
 HISTFILE="$XDG_STATE_HOME/zsh/history"
@@ -24,10 +19,6 @@ setopt share_history          # share history across sessions
 if [[ -x /opt/homebrew/bin/brew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
-
-# p10k
-[[ -r "$XDG_DATA_HOME/powerlevel10k/powerlevel10k.zsh-theme" ]] && source "$XDG_DATA_HOME/powerlevel10k/powerlevel10k.zsh-theme"
-[[ -r "$XDG_CONFIG_HOME/zsh/p10k.zsh" ]] && source "$XDG_CONFIG_HOME/zsh/p10k.zsh"
 
 # zsh-autosuggestions
 [[ -r "$XDG_DATA_HOME/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && source "$XDG_DATA_HOME/zsh-autosuggestions/zsh-autosuggestions.zsh"
