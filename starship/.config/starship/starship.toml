@@ -1,6 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 [aws]
+disabled = true
 symbol = " "
 
 [buf]
@@ -52,6 +53,7 @@ symbol = " "
 symbol = " "
 
 [gcloud]
+disabled = true
 symbol = " "
 
 [git_branch]
