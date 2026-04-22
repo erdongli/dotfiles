@@ -425,6 +425,12 @@ return {
 							check = {
 								command = "clippy",
 							},
+							imports = {
+								granularity = {
+									group = "module",
+									enforce = true,
+								},
+							},
 						},
 					},
 				},
